@@ -1,0 +1,11 @@
+{
+  "name": "ItemFinder",
+  "version": "0.0.1",
+  "title": "ItemFinder",
+  "author": "Reika",
+  "contact": "",
+  "homepage": "",
+  "factorio_version" : "0.16",
+  "description": "Adds a command to find lost items.",
+  "dependencies": ["base >= 0.16.0"]
+}
