@@ -16,7 +16,7 @@ end
 local function findItem(player, force, item)
 	local found = {}
 	local s = game.surfaces[1]
-	if not game.entity_prototypes[item] then --in the world
+	if game.entity_prototypes[item] then --in the world
 		for _,e in pairs(s.find_entities_filtered{force = force, name = item}) do
 			table.insert(found, {type = "Entity", position = e, count = 1})
 		end

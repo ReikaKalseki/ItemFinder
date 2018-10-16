@@ -1,4 +1,8 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.164
+Date: Oct 15 2018
+	- Fixed the command missing entities
+---------------------------------------------------------------------------------------------------
 Version: 1.0.160
 Date: Oct 10 2018
 	- Fixed the command missing spilled items from several sources
