@@ -81,7 +81,7 @@ script.on_event(defines.events.on_tick, function(event)
 	end
 end)
 
-script.on_load(function()
+local function addCommands()
 	commands.add_command("findItem", {"cmd.find-item"}, function(event)
 		local player = game.players[event.player_index]
 		if not event.parameter then
@@ -108,6 +108,12 @@ script.on_load(function()
 			player.print("Found no items.")
 		end
 	end)
+end
+
+addCommands()
+
+script.on_load(function()
+	
 end)
 
 script.on_init(function()
