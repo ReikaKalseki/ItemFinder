@@ -1,4 +1,8 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.180
+Date: Nov 28 2018
+	- Fixed command not being accessible the first load of a save
+---------------------------------------------------------------------------------------------------
 Version: 1.0.164
 Date: Oct 15 2018
 	- Fixed the command missing entities
