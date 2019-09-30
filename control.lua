@@ -103,7 +103,7 @@ local function addCommands()
 				total = total+entry.count
 			end
 			player.print("Found a total of " .. total .. " items.")
-			player.play_sound{path="utility/alert_construction", position=player.position, volume_modifier=1}
+			player.play_sound{path="utility/console_message", position=player.position, volume_modifier=1}
 		else
 			player.print("Found no items.")
 		end
