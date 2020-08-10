@@ -1,6 +1,8 @@
 require "config"
 require "functions"
 
+require "__DragonIndustries__.strings"
+
 function initGlobal(force)
 	if not global.finder then
 		global.finder = {}
@@ -13,15 +15,16 @@ local function createArrowAt(finder, entity)
 	table.insert(finder.arrows, {entity = entity, creation = game.tick})
 end
 
-local function findItem(player, force, item)
+local function findItem(player, force, item, range)
 	local found = {}
+	local box = range and {{player.position.x-range, player.position.y-range}, {player.position.x+range, player.position.y+range}} or nil
 	local s = game.surfaces[1]
 	if game.entity_prototypes[item] then --in the world
-		for _,e in pairs(s.find_entities_filtered{force = force, name = item}) do
+		for _,e in pairs(s.find_entities_filtered{force = force, name = item, area = box}) do
 			table.insert(found, {type = "Entity", position = e, count = 1})
 		end
 	end
-	for _,e in pairs(s.find_entities_filtered{force = force}) do --inventories
+	for _,e in pairs(s.find_entities_filtered{force = force, area = box}) do --inventories
 		if (e.type == "car" or e.type == "cargo-wagon") and e.get_driver() == player then
 			player.print("Skipping " .. e.name .. " as you are in it.")
 		else
@@ -39,7 +42,7 @@ local function findItem(player, force, item)
 			end
 		end
 	end
-	for _,e in pairs(s.find_entities_filtered{type = "item-entity"}) do --dropped items; do not check force, as dropped items are always neutral
+	for _,e in pairs(s.find_entities_filtered{type = "item-entity", area = box}) do --dropped items; do not check force, as dropped items are always neutral
 		local itype = e.stack
 		if itype and itype.valid_for_read then
 			if itype.name == item then
@@ -47,7 +50,7 @@ local function findItem(player, force, item)
 			end
 		end
 	end
-	for _,e in pairs(s.find_entities_filtered{type = {"transport-belt", "underground-belt", "loader"}, force = force}) do --item on belt
+	for _,e in pairs(s.find_entities_filtered{type = {"transport-belt", "underground-belt", "loader"}, force = force, area = box}) do --item on belt
 		for i = 1,2 do
 			local line = e.get_transport_line(i)
 			local c = line.get_item_count(item)
@@ -56,7 +59,7 @@ local function findItem(player, force, item)
 			end
 		end
 	end
-	for _,e in pairs(s.find_entities_filtered{type = "inserter", force = force}) do --held item
+	for _,e in pairs(s.find_entities_filtered{type = "inserter", force = force, area = box}) do --held item
 		if e.held_stack and e.held_stack.valid_for_read then
 			if e.held_stack.name == item then
 				table.insert(found, {type = "Inserter", position = e, count = e.held_stack.count})
@@ -88,11 +91,18 @@ local function addCommands()
 			player.print("You must specify an item type to look for!")
 			return
 		end
-		if not game.item_prototypes[event.parameter] then
-			player.print("No such item type '" .. event.parameter .. "'!")
+		local range = nil
+		local item = event.parameter
+		if string.find(event.parameter, "/", 1, true) then
+			local parts = splitString(event.parameter, "/")
+			item = parts[1]
+			range = tonumber(parts[2])
+		end
+		if not game.item_prototypes[item] then
+			player.print("No such item type '" .. item .. "'!")
 			return
 		end
-		local found = findItem(player, player.force, event.parameter, found)
+		local found = findItem(player, player.force, item, range)
 		if #found > 0 then
 			local finder = global.finder
 			local total = 0
