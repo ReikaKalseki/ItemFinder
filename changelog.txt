@@ -1,42 +1,45 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.152.1
-Date: Nov 15 2022
-	- Fixed finding only working on main game surface
-	- Moved graphics to DI
----------------------------------------------------------------------------------------------------
-Version: 1.102.1
+Version: 1.101.102
 Date: Mar 27 2021
-	- Update to 1.1
+  Misc Changes:
+    - Update to 1.1
 ---------------------------------------------------------------------------------------------------
-Version: 1.18.18
+Version: 1.018.18
 Date: Aug 10 2020
-	- Added optional range parameter to command
+  New Features:
+    - Added optional range parameter to command
 ---------------------------------------------------------------------------------------------------
-Version: 1.18.1
+Version: 1.018.1
 Date: May 29 2020
-	- Update to 0.18
+  Misc Changes:
+    - Update to 0.18
 ---------------------------------------------------------------------------------------------------
-Version: 1.17.24
+Version: 1.017.24
 Date: Sep 30 2019
-	- Fixed alert sound
+  Bugfixes:
+    - Fixed alert sound
 ---------------------------------------------------------------------------------------------------
-Version: 1.17.1
+Version: 1.017.1
 Date: Mar 23 2019
-	- Update to 0.17
+  Misc Changes:
+    - Update to 0.17
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.180
+Version: 1.016.180
 Date: Nov 28 2018
-	- Fixed command not being accessible the first load of a save
+  Bugfixes:
+    - Fixed command not being accessible the first load of a save
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.164
+Version: 1.016.164
 Date: Oct 15 2018
-	- Fixed the command missing entities
+  Bugfixes:
+    - Fixed the command missing entities
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.160
+Version: 1.016.160
 Date: Oct 10 2018
-	- Fixed the command missing spilled items from several sources
+  Bugfixes:
+    - Fixed the command missing spilled items from several sources
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.150
+Version: 1.016.150
 Date: Sep 23 2018
-	- Creation
----------------------------------------------------------------------------------------------------
+  Misc Changes:
+    - Creation

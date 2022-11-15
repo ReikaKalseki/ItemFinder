@@ -18,7 +18,7 @@ end
 local function findItem(player, force, item, range)
 	local found = {}
 	local box = range and {{player.position.x-range, player.position.y-range}, {player.position.x+range, player.position.y+range}} or nil
-	local s = game.surfaces[1]
+	local s = player.surface
 	if game.entity_prototypes[item] then --in the world
 		for _,e in pairs(s.find_entities_filtered{force = force, name = item, area = box}) do
 			table.insert(found, {type = "Entity", position = e, count = 1})
@@ -130,7 +130,7 @@ script.on_init(function()
 	initGlobal(true)
 end)
 
-script.on_configuration_changed(function()
+script.on_configuration_changed(function(data)
 	initGlobal(true)
 end)
 --[[
