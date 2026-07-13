@@ -1,5 +1,3 @@
-require "config"
-
 data:extend({
 {
 	type = "virtual-signal",
